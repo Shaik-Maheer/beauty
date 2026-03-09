@@ -13,6 +13,7 @@
     "@tailwindcss/cli": "^4.1.10",
     "@tailwindcss/vite": "^4.1.10",
     "aos": "^2.3.4",
+    "lucide-react": "^0.577.0",
     "rc-slider": "^11.1.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
