@@ -100,10 +100,10 @@
 
 
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import api from "../utils/axiosInstance";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -269,6 +269,16 @@ const ResetPassword = () => {
         <p className="text-xs text-gray-500 mt-3">
           Use at least 8 characters with uppercase, lowercase, number, and a special character.
         </p>
+
+        <div className="mt-6 text-center border-t border-gray-100 pt-6">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-2 text-sm text-gray-400 underline hover:text-pink-600 transition-colors cursor-pointer"
+          >
+            <ArrowLeft size={14} />
+            Back to Login
+          </Link>
+        </div>
       </form>
     </div>
   );
