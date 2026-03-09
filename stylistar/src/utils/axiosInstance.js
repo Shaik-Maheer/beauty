@@ -1,7 +1,7 @@
 // import axios from "axios";
 
 // const axiosInstance = axios.create({
-//   baseURL: "http://localhost:5000/api",
+//   baseURL: "https://beauty-backend-psst.onrender.com/api",
 // });
 
 // axiosInstance.interceptors.request.use((config) => {
@@ -20,7 +20,7 @@
 import axios from "axios";
 import { getToken, logout } from "./auth";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://beauty-backend-psst.onrender.com";
 
 // If your backend mounts APIs under /api, keep `/api` here:
 const api = axios.create({
