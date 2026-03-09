@@ -76,19 +76,21 @@ const BottomNav = () => {
       <div className="flex justify-between items-center px-4 h-16">
         {/* Brand name */}
         {/* Brand name */}
-        <div className="font-bold text-pink-600 text-lg sm:text-xl tracking-tight flex items-center gap-1">
+        <div className="hidden md:flex font-bold text-pink-600 text-lg sm:text-xl tracking-tight items-center gap-1">
           <span className="text-xl">🌸</span>
           <span className="nav-brand-full">Stylistar</span>
           <span className="nav-brand-short">S</span>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 sm:gap-8 overflow-x-auto no-scrollbar py-2">
+        <div className="flex flex-1 md:flex-none justify-center md:justify-start gap-4 sm:gap-8 overflow-x-auto no-scrollbar py-2">
           {tabs.map((tab) => (
             <Link
               key={tab.to}
               to={tab.to}
               className={`flex flex-col items-center min-w-[50px] transition-all duration-300 ${
+                tab.label === "Blog" ? "hidden md:flex" : "flex"
+              } ${
                 location.pathname === tab.to
                   ? "text-pink-600 scale-110 font-bold"
                   : "text-gray-400 hover:text-pink-400"
