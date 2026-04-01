@@ -25,7 +25,7 @@ const API_BASE = import.meta.env.VITE_API_BASE || "https://beauty-backend-psst.o
 // If your backend mounts APIs under /api, keep `/api` here:
 const api = axios.create({
   baseURL: `${API_BASE}/api`,
-  timeout: 12000,
+  timeout: 60000,
   headers: { Accept: "application/json" },
 });
 

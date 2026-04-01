@@ -49,9 +49,9 @@ export default function ProductDetails() {
       
       let res;
       try {
-        res = await axios.get(url, { timeout: 10000 });
+        res = await axios.get(url, { timeout: 60000 });
       } catch {
-        res = await axios.get(altUrl, { timeout: 12000 });
+        res = await axios.get(altUrl, { timeout: 60000 });
       }
 
       const raw = Array.isArray(res.data) ? res.data : [];
@@ -78,11 +78,11 @@ export default function ProductDetails() {
       // 1. Try fetching specific product first (fastest if API supports it well)
       let found = null;
       try {
-        const r = await axios.get(`${PRIMARY_BASE}/products/${id}.json`, { timeout: 6000 });
+        const r = await axios.get(`${PRIMARY_BASE}/products/${id}.json`, { timeout: 60000 });
         if (r.data?.id) found = r.data;
       } catch {
         try {
-          const r = await axios.get(`${SECONDARY_BASE}/products/${id}.json`, { timeout: 8000 });
+          const r = await axios.get(`${SECONDARY_BASE}/products/${id}.json`, { timeout: 60000 });
           if (r.data?.id) found = r.data;
         } catch {
           // Carry on to fallback

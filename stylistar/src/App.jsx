@@ -51,7 +51,6 @@ import Services from "./pages/Services";
 
 // Components
 import Navbar from "./components/Navbar";
-import BottomNav from "./components/BottomNav";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -77,7 +76,7 @@ const LayoutWrapper = () => {
   return (
     <>
       {!hideChrome && <Navbar />}
-      <div className={hideChrome ? "" : "pb-[110px] md:pb-0 min-h-screen bg-gray-50"}>
+      <div className="min-h-screen bg-gray-50 pb-safe">
         <Routes>
           {/* Root route redirects to home if logged in, else login */}
           <Route
@@ -108,8 +107,6 @@ const LayoutWrapper = () => {
         </Routes>
       </div>
 
-      {/* Conditional BottomNav and Footer */}
-      {!hideChrome && <BottomNav />}
       {!hideChrome && <Footer />}
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop />
     </>

@@ -128,12 +128,12 @@ const Home = () => {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {[
-            { name: "L'Oreal", img: "https://i.pinimg.com/736x/d8/4a/c0/d84ac0ce3c480398f62fa2270d4ab5ed.jpg" },
-            { name: "Maybelline", img: "https://i.pinimg.com/736x/be/9a/2b/be9a2be3d00f6815cf156b829633e218.jpg" },
-            { name: "MAC", img: "https://i.pinimg.com/736x/09/bd/3a/09bd3ab60ae9fa2b43baf2bd6e7eec82.jpg" },
-            { name: "Rare Beauty", img: "https://i.pinimg.com/736x/2b/48/4f/2b484fbe355afdf6b4b455c1b6978df4.jpg" },
-            { name: "Lakme", img: "https://i.pinimg.com/736x/30/ee/c1/30eec1a95e2cd1e915442edebec0808b.jpg" },
-            { name: "NYX Cosmetics", img: "https://i.pinimg.com/736x/09/25/de/0925deb26b64b150c904944d18eb8b26.jpg" },
+            { name: "L'Oreal", img: "/images/one.jpg" },
+            { name: "Maybelline", img: "/images/two.jpg" },
+            { name: "MAC", img: "/images/three.jpg" },
+            { name: "Rare Beauty", img: "/images/four.jpg" },
+            { name: "Lakme", img: "/images/five.jpg" },
+            { name: "NYX Cosmetics", img: "/images/six.jpg" },
           ].map((brand, idx) => (
             <Link to="/shop" key={idx} className="block bg-white rounded-3xl shadow-sm hover:shadow-xl border border-pink-50 hover:border-pink-200 overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay={idx * 50}>
               <div className="aspect-square bg-white flex items-center justify-center p-6 relative">
@@ -150,7 +150,7 @@ const Home = () => {
       {/* Best Offers Banner */}
       <section className="py-16 px-4 sm:px-8 max-w-7xl mx-auto" data-aos="zoom-in">
          <div className="relative w-full h-64 md:h-80 rounded-[2rem] overflow-hidden shadow-2xl group">
-             <img src="https://i.pinimg.com/1200x/bc/35/a3/bc35a3cc202029bd74cb7e30733a1cc5.jpg" alt="Offers Banner" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+             <img src="/images/banner1.jpg" alt="Offers Banner" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center p-8 md:p-20">
                  <div className="text-white max-w-xl">
                     <span className="bg-pink-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block shadow-md">Festive Exclusive</span>

@@ -26,6 +26,9 @@ router.post("/forgot-password", async (req, res) => {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASS,
       },
+      connectionTimeout: 10000, // Timeout if Gmail connection hangs (10 seconds)
+      greetingTimeout: 5000,
+      socketTimeout: 10000,
     });
 
     const resetLink = `https://beauty-orcin-three.vercel.app/reset-password/${token}`;
