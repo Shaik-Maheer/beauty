@@ -34,27 +34,30 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[72px]">
           
-          {/* Left: Mobile Menu Toggle & Logo */}
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 -ml-2 rounded-full text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-pink-200"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            <Link to="/home" className="flex items-center gap-2">
-               <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent tracking-tight hover:opacity-80 transition duration-300">
-                 STYLISTAR
-               </span>
-            </Link>
-          </div>
+          {/* Left Side: Logo & Navigation */}
+          <div className="flex items-center gap-6 xl:gap-10">
+            {/* Mobile Menu Toggle & Logo */}
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 -ml-2 rounded-full text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-pink-200"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+              <Link to="/home" className="flex items-center gap-2">
+                 <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent tracking-tight hover:opacity-80 transition duration-300">
+                   STYLISTAR
+                 </span>
+              </Link>
+            </div>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-8 font-semibold text-gray-700 text-sm tracking-wide">
-            <Link to="/home" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/home'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>HOME</Link>
-            <Link to="/shop" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/shop'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>SHOP</Link>
-            <Link to="/services" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/services'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>LUXE SERVICES</Link>
-            <Link to="/blog" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/blog'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>BEAUTY ADVICE</Link>
+            {/* Desktop Nav Links */}
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-gray-700 text-[13px] tracking-widest mt-1">
+              <Link to="/home" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/home'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>HOME</Link>
+              <Link to="/shop" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/shop'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>SHOP</Link>
+              <Link to="/services" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/services'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>LUXE SERVICES</Link>
+              <Link to="/blog" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/blog'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>BEAUTY ADVICE</Link>
+            </div>
           </div>
 
           {/* Search Bar - Desktop */}
