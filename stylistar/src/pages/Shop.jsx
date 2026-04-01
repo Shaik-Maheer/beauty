@@ -33,9 +33,8 @@ const Shop = () => {
   const isFetchingRef = useRef(false);
   const itemsPerPage = 8;
 
-  // Updated endpoints to use brand-filtered data for faster initial load
-  const API_URL = "/makeup/api/v1/products.json?brand=maybelline";
-  const SECONDARY_URL = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
+  // Fetch ALL products from direct external URL to fix Vercel returning HTML for local proxy
+  const API_URL = "https://makeup-api.herokuapp.com/api/v1/products.json";
 
   const loadProducts = async (attempt = 1) => {
     // Avoid duplicate concurrent triggers
@@ -64,15 +63,13 @@ const Shop = () => {
     setError("");
 
     try {
-      // Increased timeout to 30000ms as requested
-      const config = { timeout: 30000 };
-      let res;
-      
-      try {
-        res = await axios.get(API_URL, config);
-      } catch (e) {
-        // Fallback directly to external URL if proxy fails or timeouts
-        res = await axios.get(SECONDARY_URL, config);
+      // The API is known to be slow when fetching all products, so allow 60s
+      const config = { timeout: 60000 };
+      const res = await axios.get(API_URL, config);
+
+      // On Vercel, if rewrites misfire, it returns HTML index. Fail safely.
+      if (typeof res.data === 'string' && res.data.includes('<html')) {
+          throw new Error("Received HTML instead of JSON products");
       }
 
       const raw = Array.isArray(res.data) ? res.data : [];
