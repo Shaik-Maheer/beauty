@@ -17,14 +17,14 @@ router.get("/", auth, async (req, res) => {
 router.post("/add", auth, async (req, res) => {
     const { productId, name, image, price, quantity } = req.body;
     try {
-        let item = await Cart.findOne({ userId: req.userId, productId });
+        let item = await Cart.findOne({ userId: req.userId, productId: String(productId) });
         if (item) {
             item.quantity += quantity || 1;
             await item.save();
         } else {
             item = new Cart({
                 userId: req.userId,
-                productId,
+                productId: String(productId),
                 name,
                 image,
                 price,

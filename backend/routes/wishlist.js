@@ -9,9 +9,15 @@ router.post("/", auth, async (req, res) => {
   const { productId, name, image, price } = req.body;
 
   try {
+    // Prevent duplicates
+    const existingItem = await Wishlist.findOne({ userId: req.userId, productId: String(productId) });
+    if (existingItem) {
+        return res.status(200).json({ msg: "Already in wishlist", item: existingItem });
+    }
+
     const newItem = await Wishlist.create({
       userId: req.userId,
-      productId,
+      productId: String(productId),
       name,
       image,
       price,
