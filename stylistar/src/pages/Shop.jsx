@@ -33,29 +33,28 @@ const Shop = () => {
   const isFetchingRef = useRef(false);
   const itemsPerPage = 8;
 
-  // Fetch ALL products from direct external URL to fix Vercel returning HTML for local proxy
-  const API_URL = "https://makeup-api.herokuapp.com/api/v1/products.json";
+  // Fast endpoint to instantly show *something* to the user
+  const FAST_API_URL = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
+  // Slow endpoint to get the entire catalog in the background
+  const FULL_API_URL = "https://makeup-api.herokuapp.com/api/v1/products.json";
 
-  const loadProducts = async (attempt = 1) => {
-    // Avoid duplicate concurrent triggers
-    if (isFetchingRef.current && attempt === 1) return;
+  const loadProducts = async () => {
+    if (isFetchingRef.current) return;
     isFetchingRef.current = true;
 
-    // 1. Check Cache (only on initial load)
-    if (attempt === 1) {
-      const cached = sessionStorage.getItem(CACHE_KEY);
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setAllProducts(parsed);
-            setLoading(false);
-            isFetchingRef.current = false;
-            return;
-          }
-        } catch (e) {
-          console.error("Cache parse error", e);
+    // 1. Check Cache
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setAllProducts(parsed);
+          setLoading(false);
+          isFetchingRef.current = false;
+          return; // Skip fetching if we have the full cache
         }
+      } catch (e) {
+        console.error("Cache parse error", e);
       }
     }
 
@@ -63,44 +62,46 @@ const Shop = () => {
     setError("");
 
     try {
-      // The API is known to be slow when fetching all products, so allow 60s
-      const config = { timeout: 60000 };
-      const res = await axios.get(API_URL, config);
+      // 2. Fetch the small dataset so UX feels instant
+      const fastConfig = { timeout: 15000 };
+      const fastRes = await axios.get(FAST_API_URL, fastConfig);
 
-      // On Vercel, if rewrites misfire, it returns HTML index. Fail safely.
-      if (typeof res.data === 'string' && res.data.includes('<html')) {
-          throw new Error("Received HTML instead of JSON products");
+      if (typeof fastRes.data === 'string' && fastRes.data.includes('<html')) {
+        throw new Error("Received HTML proxy timeout");
       }
 
-      const raw = Array.isArray(res.data) ? res.data : [];
-      const cleaned = raw.filter((p) => Number.isFinite(+p?.price) && +p.price > 0);
+      const rawFast = Array.isArray(fastRes.data) ? fastRes.data : [];
+      const cleanedFast = rawFast.filter((p) => Number.isFinite(+p?.price) && +p.price > 0);
 
-      if (cleaned.length > 0) {
-        setAllProducts(cleaned);
-        sessionStorage.setItem(CACHE_KEY, JSON.stringify(cleaned));
-        setError("");
-      } else {
-        throw new Error("No products found in response");
+      if (cleanedFast.length > 0) {
+        setAllProducts(cleanedFast); // Instantly populate the screen!
+        setLoading(false);           // Instantly hide the loader!
       }
+
+      // 3. Fetch the massive dataset completely silently in the background
+      axios.get(FULL_API_URL, { timeout: 90000 })
+        .then((fullRes) => {
+          if (typeof fullRes.data === 'string' && fullRes.data.includes('<html')) return;
+          
+          const rawFull = Array.isArray(fullRes.data) ? fullRes.data : [];
+          const cleanedFull = rawFull.filter((p) => Number.isFinite(+p?.price) && +p.price > 0);
+          
+          if (cleanedFull.length > 0) {
+             setAllProducts(cleanedFull); // Silently upgrade UI to show ALL brands
+             sessionStorage.setItem(CACHE_KEY, JSON.stringify(cleanedFull)); // Cache the massive dataset
+          }
+        })
+        .catch((e) => console.log("Silent background update failed:", e.message))
+        .finally(() => {
+          isFetchingRef.current = false;
+        });
+
     } catch (e) {
-      console.error(`Fetch error (attempt ${attempt}):`, e);
-
-      if (attempt < 3) {
-        // Exponential backoff: 2s, 4s
-        const delay = attempt * 2000;
-        console.log(`Retrying in ${delay}ms...`);
-        setTimeout(() => loadProducts(attempt + 1), delay);
-        return; // Don't turn off loading state yet
-      } else {
-        setError("Unable to load products. The API might be slow or down.");
-        toast.error("Failed to fetch products after multiple attempts.");
-      }
-    } finally {
-      // Only turn off loading if we're not retrying or if we're on the last attempt
-      if (attempt >= 3 || !isFetchingRef.current) {
-        setLoading(false);
-        isFetchingRef.current = false;
-      }
+      console.error("Fast fetch failed:", e);
+      setError("Unable to load products. The API might be slow or down.");
+      toast.error("Failed to fetch products.");
+      setLoading(false);
+      isFetchingRef.current = false;
     }
   };
 
