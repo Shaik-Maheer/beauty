@@ -50,6 +50,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 
 // Components
+import Navbar from "./components/Navbar";
 import BottomNav from "./components/BottomNav";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
@@ -75,7 +76,8 @@ const LayoutWrapper = () => {
 
   return (
     <>
-      <div className={hideChrome ? "" : "pb-[110px] md:pb-0"}>
+      {!hideChrome && <Navbar />}
+      <div className={hideChrome ? "" : "pb-[110px] md:pb-0 min-h-screen bg-gray-50"}>
         <Routes>
           {/* Root route redirects to home if logged in, else login */}
           <Route

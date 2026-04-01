@@ -34,37 +34,43 @@ const Home = () => {
     <div className="font-sans">
 
       {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center px-6 sm:px-12 bg-black">
+      <section className="relative h-[450px] md:h-[600px] flex items-center justify-center bg-gray-900 group overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-900/60 to-transparent z-10 pointer-events-none"></div>
         <img
           src="https://i.pinimg.com/736x/5b/e5/1e/5be51edc77b6283db27fca13d355f0d3.jpg"
           alt="Glam Model"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
+          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[15s] ease-out"
         />
-        <div className="relative z-10 text-center text-white" data-aos="fade-up">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">Unleash Your Inner Glam ✨</h1>
-          <p className="text-lg sm:text-xl mb-6">Luxury makeup for every style, mood & skin.</p>
+        <div className="relative z-20 text-center md:text-left px-6 w-full max-w-7xl mx-auto" data-aos="fade-up">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 drop-shadow-xl text-white">
+             Unleash Your <br className="hidden md:block" /> Inner Glam
+          </h1>
+          <p className="text-lg md:text-2xl font-light mb-8 drop-shadow-md text-pink-50 max-w-xl">
+             Discover luxury beauty, premium skincare, and timeless makeup aesthetics.
+          </p>
           <Link
-          to="/shop"
-          className="bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-full transition"
-        >
-          Shop Now
-        </Link>
-
+            to="/shop"
+            className="inline-block bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-700 hover:to-rose-600 text-white font-bold px-10 py-4 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,63,108,0.4)] hover:shadow-[0_0_30px_rgba(255,63,108,0.6)] hover:-translate-y-1 transform"
+          >
+            Shop The Collection
+          </Link>
         </div>
       </section>
-      <div className="bg-pink-100 py-2 shadow-sm">
-  <Marquee gradient={false} speed={50}>
-    <p className="text-pink-800 font-semibold text-sm sm:text-base mx-4">
-      💄 Free Sample with Every Order!
-    </p>
-    <p className="text-pink-800 font-semibold text-sm sm:text-base mx-4">
-      🚚 Free Shipping on Orders Above ₹499!
-    </p>
-    <p className="text-pink-800 font-semibold text-sm sm:text-base mx-4">
-      🎁 Limited Time Offer – Shop Now & Save Big!
-    </p>
-  </Marquee>
-</div>
+
+      {/* Marquee Banner */}
+      <div className="bg-pink-100/90 backdrop-blur-md py-3 border-b border-pink-200 hidden md:block">
+        <Marquee gradient={false} speed={40}>
+          <p className="text-pink-800 font-bold text-sm tracking-wide mx-12 flex items-center gap-2">
+             <span className="text-lg">💄</span> FREE SAMPLE WITH EVERY ORDER!
+          </p>
+          <p className="text-pink-800 font-bold text-sm tracking-wide mx-12 flex items-center gap-2">
+             <span className="text-lg">🚚</span> FREE SHIPPING ON ORDERS ABOVE ₹499!
+          </p>
+          <p className="text-pink-800 font-bold text-sm tracking-wide mx-12 flex items-center gap-2">
+             <span className="text-lg">✨</span> 100% AUTHENTIC LUXURY PRODUCTS
+          </p>
+        </Marquee>
+      </div>
 
    
 
@@ -111,76 +117,50 @@ const Home = () => {
 </section>
 
 
-{/* Best Sellers Section */}
-<section className="py-12 px-6 sm:px-12 bg-white">
-  <h2 className="text-3xl font-bold text-center mb-8">Best Sellers</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-h-[900px] overflow-hidden">
-  {[
-      {
-        name: "Matte Liquid Lipstick",
-        desc: "Long-lasting, smudge-proof finish.",
-        img: "https://i.pinimg.com/736x/6c/b5/90/6cb59012a496ec8621180021e90b61b3.jpg",
-        price: "₹499",
-        rating: "★★★★★"
-      },
-      {
-        name: "Waterproof Eyeliner Pen",
-        desc: "Sharp, bold lines with ease.",
-        img: "https://i.pinimg.com/736x/e1/9f/b1/e19fb182850877d4692a35e3de78fe7f.jpg",
-        price: "₹299",
-        rating: "★★★★☆"
-      },
-      {
-        name: "Volumizing Mascara",
-        desc: "Adds intense volume and curl.",
-        img: "https://i.pinimg.com/1200x/4d/4a/b6/4d4ab6ab657563df2bc22ca71802af07.jpg",
-        price: "₹399",
-        rating: "★★★★☆"
-      },
-      {
-        name: "Loreal Paris Hydrating Foundation",
-        desc: "Smooth coverage with dewy glow.",
-        img: "https://i.pinimg.com/736x/42/1f/8d/421f8dd1fc53e55e65da4e3ae83135d4.jpg",
-        price: "₹799",
-        rating: "★★★★☆"
-      },
-      {
-        name: "Rare Beauty Peach Glow Blush",
-        desc: "Natural, radiant cheek color.",
-        img: "https://i.pinimg.com/736x/43/92/de/4392de327d7a37fbb9fa736f2ef555ea.jpg",
-        price: "₹349",
-        rating: "★★★☆☆"
-      },
-      {
-        name: "Nude Eyeshadow Palette",
-        desc: "Versatile shades for all looks.",
-        img: "https://i.pinimg.com/1200x/12/0f/89/120f897f1c8eacde4d58570859c0d1a8.jpg",
-        price: "₹599",
-        rating: "★★★★☆"
-      },
-    ].map((item, index) => (
-      <div
-        key={index}
-        className="border rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
-        data-aos="zoom-in"
-      >
-        <img
-          src={item.img}
-          alt={item.name}
-          className="w-full h-60 object-cover hover:scale-105 transition duration-300"
-        />
-        <div className="p-4">
-          <h3 className="font-semibold text-lg mb-2">{item.name}</h3>
-          <p className="text-gray-600">{item.desc}</p>
-          <div className="flex items-center justify-between mt-2">
-            <span className="text-rose-500 font-bold">{item.price}</span>
-            <span className="text-yellow-400">{item.rating}</span>
-          </div>
+      {/* Top Brands Section */}
+      <section className="py-16 md:py-20 px-4 sm:px-8 max-w-7xl mx-auto border-b border-gray-100">
+        <div className="flex justify-between items-end mb-8">
+           <div>
+             <span className="text-pink-600 font-bold tracking-widest uppercase text-xs">Curated Portfolio</span>
+             <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Top Brands</h2>
+           </div>
+           <Link to="/shop" className="text-pink-600 font-bold hover:text-pink-700 flex items-center gap-1 hover:gap-2 transition-all">Explore All</Link>
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+          {[
+            { name: "L'Oreal", img: "https://i.pinimg.com/736x/d8/4a/c0/d84ac0ce3c480398f62fa2270d4ab5ed.jpg" },
+            { name: "Maybelline", img: "https://i.pinimg.com/736x/be/9a/2b/be9a2be3d00f6815cf156b829633e218.jpg" },
+            { name: "MAC", img: "https://i.pinimg.com/736x/09/bd/3a/09bd3ab60ae9fa2b43baf2bd6e7eec82.jpg" },
+            { name: "Rare Beauty", img: "https://i.pinimg.com/736x/2b/48/4f/2b484fbe355afdf6b4b455c1b6978df4.jpg" },
+            { name: "Lakme", img: "https://i.pinimg.com/736x/30/ee/c1/30eec1a95e2cd1e915442edebec0808b.jpg" },
+            { name: "NYX Cosmetics", img: "https://i.pinimg.com/736x/09/25/de/0925deb26b64b150c904944d18eb8b26.jpg" },
+          ].map((brand, idx) => (
+            <Link to="/shop" key={idx} className="block bg-white rounded-3xl shadow-sm hover:shadow-xl border border-pink-50 hover:border-pink-200 overflow-hidden group transition-all duration-300" data-aos="fade-up" data-aos-delay={idx * 50}>
+              <div className="aspect-square bg-white flex items-center justify-center p-6 relative">
+                 <img src={brand.img} alt={brand.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition duration-500 ease-out" />
+              </div>
+              <div className="bg-pink-50 py-3 text-center border-t border-pink-100 group-hover:bg-pink-600 transition duration-300">
+                 <p className="font-bold text-gray-800 tracking-wide group-hover:text-white text-[12px]">{brand.name.toUpperCase()}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Best Offers Banner */}
+      <section className="py-16 px-4 sm:px-8 max-w-7xl mx-auto" data-aos="zoom-in">
+         <div className="relative w-full h-64 md:h-80 rounded-[2rem] overflow-hidden shadow-2xl group">
+             <img src="https://i.pinimg.com/1200x/bc/35/a3/bc35a3cc202029bd74cb7e30733a1cc5.jpg" alt="Offers Banner" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center p-8 md:p-20">
+                 <div className="text-white max-w-xl">
+                    <span className="bg-pink-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block shadow-md">Festive Exclusive</span>
+                    <h2 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-md">Flat 50% Off</h2>
+                    <p className="text-gray-200 mb-8 hidden md:block text-xl font-light drop-shadow-sm">Upgrade your vanity with premium skincare and iconic makeup palettes.</p>
+                    <Link to="/shop" className="bg-white text-pink-600 hover:bg-pink-50 font-bold px-10 py-4 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition transform hover:-translate-y-1 inline-block text-lg">Grab Deals</Link>
+                 </div>
+             </div>
+         </div>
+      </section>
 
 
 {/* // 👇 Section JSX */}

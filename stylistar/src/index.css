@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-pink-50: #fff0f3;
+  --color-pink-100: #ffe4e9;
+  --color-pink-500: #ff5e84;
+  --color-pink-600: #ff3f6c;
+  --color-pink-700: #e82c5a;
+  --color-rose-500: #ff3f6c;
+  --color-rose-600: #e82c5a;
+}
 @layer base {
   :root {
     --beauty-pink: #db2777;
