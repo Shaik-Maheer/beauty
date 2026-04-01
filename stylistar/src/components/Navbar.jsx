@@ -52,8 +52,7 @@ const Navbar = () => {
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-8 font-semibold text-gray-700 text-sm tracking-wide">
             <Link to="/home" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/home'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>HOME</Link>
-            <Link to="/shop" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/shop'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>SHOP ALL</Link>
-            <Link to="/shop" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/shop?sort=brands'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>BRANDS</Link>
+            <Link to="/shop" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/shop'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>SHOP</Link>
             <Link to="/services" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/services'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>LUXE SERVICES</Link>
             <Link to="/blog" className={`hover:text-pink-600 hover:scale-105 line-clamp-1 transition-all duration-300 ${location.pathname==='/blog'?'text-pink-600 border-b-2 border-pink-600 py-1':''}`}>BEAUTY ADVICE</Link>
           </div>
@@ -111,8 +110,7 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col max-h-[70vh] overflow-y-auto pb-4">
              <MobileLink to="/home">HOME</MobileLink>
-             <MobileLink to="/shop">SHOP ALL</MobileLink>
-             <MobileLink to="/shop?sort=brands">BRANDS</MobileLink>
+             <MobileLink to="/shop">SHOP</MobileLink>
              <MobileLink to="/services">LUXE SERVICES</MobileLink>
              <MobileLink to="/blog">BEAUTY ADVICE (BLOG)</MobileLink>
           </div>
