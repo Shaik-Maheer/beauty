@@ -155,11 +155,18 @@ const Login = () => {
     setError("");
     setLoading(true);
 
+    // Provide cold start feedback to the user after 5 seconds
+    const coldStartTimer = setTimeout(() => {
+      setError("Server is waking up (this can take up to 50 seconds on a free server). Please hold on...");
+    }, 5000);
+
     try {
       const res = await api.post("/auth/login", {
         email,
         password,
       });
+
+      clearTimeout(coldStartTimer); // Clear the cold start message on success
 
       if (res.data?.token) {
         saveUser(res.data.user, res.data.token);
@@ -170,12 +177,19 @@ const Login = () => {
         throw new Error("Invalid response from server.");
       }
     } catch (err) {
+      clearTimeout(coldStartTimer); // Clear it if it errors quickly
       const msg =
         err?.response?.data?.message ||
         err?.response?.data?.error ||
         err?.message ||
         "Login failed. Please try again.";
-      setError(msg);
+      
+      // Give a specific error if it hits the 60s timeout
+      if (err.message && err.message.includes('timeout')) {
+        setError("The server took too long to wake up. Please click Login again.");
+      } else {
+        setError(msg);
+      }
     } finally {
       setLoading(false);
     }
