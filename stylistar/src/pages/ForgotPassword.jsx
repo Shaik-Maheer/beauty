@@ -54,15 +54,32 @@ const ForgotPassword = () => {
     setError("");
     setLoading(true);
 
+    // Provide cold start feedback to the user after 5 seconds
+    const coldStartTimer = setTimeout(() => {
+      setMsg("Server is waking up (up to 50s). Please hold on...");
+      setError("");
+    }, 5000);
+
     try {
       const res = await api.post("/auth/forgot-password", { email });
+      clearTimeout(coldStartTimer);
       setMsg(res.data.message || "Password reset link sent to your email.");
       setEmail(""); // clear form on success
     } catch (err) {
-      const errMsg =
+      clearTimeout(coldStartTimer);
+      setMsg(""); // Clear the waking up message
+      
+      let errMsg =
         err.response?.data?.message ||
-        err.response?.data?.error ||
-        "Something went wrong. Please try again.";
+        err.response?.data?.error;
+
+      // Specifically handle Render's cold start timeout instead of generic error
+      if (!errMsg && err.message && err.message.includes("timeout")) {
+        errMsg = "The server took too long. Please click the button again.";
+      } else if (!errMsg) {
+        errMsg = err.message || "Something went wrong. Please check your connection and try again.";
+      }
+      
       setError(errMsg);
     } finally {
       setLoading(false);
