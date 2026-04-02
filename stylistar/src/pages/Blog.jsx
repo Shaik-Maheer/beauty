@@ -38,40 +38,25 @@ export default function Blog() {
   return (
     <>
       {/* 🔥 Modern Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] py-20 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div data-aos="fade-right" className="text-left">
-            <span className="inline-block bg-[#f470a0] text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 shadow-md">
-              Free ✨
-            </span>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-              Beauty Blog <br /> Website
-            </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-md">
-              Our template offers a customizable, modern design for effortless
-              connection. Perfect for beauty tips, skincare, and lifestyle
-              inspirations 💖
-            </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 text-white font-bold rounded-full shadow-lg hover:scale-105 transition-transform">
-              Get Started →
+      <section className="relative bg-gradient-to-r from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] py-24 px-6 overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          {/* Content */}
+          <span className="inline-block bg-[#f470a0] text-white px-4 py-1.5 rounded-full text-sm font-bold mb-6 shadow-md tracking-wider">
+            PREMIUM CONTENT ✨
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight mb-8">
+            The Ultimate <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f470a0] to-rose-400">Beauty Blog</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Discover the latest trends in skincare, professional makeup tutorials, and lifestyle secrets curated just for you. Your daily dose of glam starts here 💖
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button className="px-10 py-4 bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 text-white font-bold rounded-full shadow-lg hover:shadow-pink-300 hover:scale-105 transition-all duration-300">
+              Explore Articles →
             </button>
-          </div>
-
-          {/* Right Side Mockup */}
-          <div data-aos="fade-left" className="relative flex justify-center mt-12 md:mt-0 px-4 sm:px-0">
-            <div className="relative w-[75%] sm:w-[80%] md:w-full max-w-[280px] sm:max-w-xs md:max-w-md">
-              <img
-                src="https://i.pinimg.com/736x/3d/32/e8/3d32e86c83c41c6cabfe5ce5981f1c9a.jpg"
-                alt="Beauty Blog Screenshot 1"
-                className="w-full rounded-2xl shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 relative z-10"
-              />
-              <img
-                src="https://i.pinimg.com/736x/a6/c0/4f/a6c04f4dc2d4c1038874c317144c14cf.jpg"
-                alt="Beauty Blog Screenshot 2"
-                className="absolute top-6 left-8 md:top-12 md:left-14 w-[85%] md:w-[90%] rounded-2xl shadow-xl transform rotate-[8deg] hover:rotate-2 transition-transform duration-500 z-20"
-              />
-            </div>
+            <button className="px-10 py-4 bg-white text-[#f470a0] font-bold rounded-full shadow-md border border-pink-100 hover:bg-pink-50 transition-all duration-300">
+              Join Newsletter
+            </button>
           </div>
         </div>
       </section>
@@ -254,7 +239,7 @@ export default function Blog() {
 {/* 🔥 Marquee Section */}
 <div className="bg-[#f470a0] text-white py-3 overflow-hidden relative">
   <div className="animate-marquee whitespace-nowrap">
-    <span className="mx-10">💄 Bridal Packages 20% OFF</span>
+    <span className="mx-10"> Bridal Packages 20% OFF</span>
     <span className="mx-10">🌟 New Skincare Range Just Launched</span>
     <span className="mx-10">🎉 Book Your Occasion Makeup Now</span>
     <span className="mx-10">✨ Free Shipping on Orders Over ₹999</span>
