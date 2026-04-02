@@ -212,18 +212,31 @@ const Register = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-pink-50">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-pink-700 text-center">
-          Create Account
-        </h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] relative overflow-hidden">
+      {/* Decorative Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pink-200 opacity-40 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-300 opacity-30 rounded-full blur-[120px] animate-pulse delay-700"></div>
+
+      <div 
+        className="bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-white/50 relative z-10"
+        data-aos="zoom-in"
+      >
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#f470a0] to-rose-400 rounded-2xl shadow-lg mb-4 transform hover:-rotate-12 transition-transform duration-300">
+            <span className="text-3xl">💖</span>
+          </div>
+          <h2 className="text-3xl font-black text-gray-900 tracking-tight">
+            Create Account
+          </h2>
+          <p className="text-gray-500 mt-2 font-medium">Join our beauty community today</p>
+        </div>
 
         {/* Alerts */}
         {success && (
           <div
             role="status"
             aria-live="polite"
-            className="mb-4 rounded border border-green-200 bg-green-50 p-3 text-green-700 text-sm text-center"
+            className="mb-6 rounded-2xl border border-green-100 bg-green-50/50 p-4 text-green-700 text-sm text-center font-semibold"
           >
             {success}
           </div>
@@ -231,16 +244,16 @@ const Register = () => {
         {error && (
           <div
             role="alert"
-            className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-red-700 text-sm text-center"
+            className="mb-6 rounded-2xl border border-red-100 bg-red-50/50 p-4 text-red-600 text-sm text-center font-semibold"
           >
             {error}
           </div>
         )}
 
-        <form onSubmit={handleRegister} noValidate>
+        <form onSubmit={handleRegister} noValidate className="space-y-5">
           {/* Full Name */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
+          <div className="space-y-1.5">
+            <label className="block text-sm font-bold text-gray-700 ml-1">
               Full Name
             </label>
             <input
@@ -248,94 +261,97 @@ const Register = () => {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full mt-1 p-2 border rounded focus:outline-pink-500"
+              className="w-full px-5 py-3.5 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
               placeholder="Your Name"
             />
           </div>
 
           {/* Email */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email
+          <div className="space-y-1.5">
+            <label className="block text-sm font-bold text-gray-700 ml-1">
+              Email Address
             </label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1 p-2 border rounded focus:outline-pink-500"
-              placeholder="you@example.com"
+              className="w-full px-5 py-3.5 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+              placeholder="name@example.com"
             />
           </div>
 
-          {/* Password with toggle */}
-          <div className="mb-4 relative">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
+          {/* Password */}
+          <div className="space-y-1.5 relative">
+            <label className="block text-sm font-bold text-gray-700 ml-1">
+              Create Password
             </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              required
-              minLength={6}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 p-2 border rounded pr-10 focus:outline-pink-500"
-              placeholder="Create password"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((s) => !s)}
-              className="absolute right-3 top-9 text-gray-600 hover:text-pink-600"
-              tabIndex={-1}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                minLength={6}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-5 py-3.5 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((s) => !s)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#f470a0] transition"
+                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           {/* Terms & Conditions */}
-          <div className="mb-4 flex items-start gap-2 text-sm text-gray-700">
+          <div className="flex items-start gap-3 py-2 px-1">
             <input
+              id="agree"
               type="checkbox"
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
-              className="mt-1"
+              className="mt-1 w-5 h-5 rounded-md border-pink-200 text-[#f470a0] focus:ring-[#f470a0] cursor-pointer accent-[#f470a0]"
               required
             />
-            <span>
+            <label htmlFor="agree" className="text-xs text-gray-600 leading-relaxed font-medium">
               I agree to the{" "}
-              <Link to="/terms" className="text-pink-600 underline">
+              <Link to="/terms" className="text-[#f470a0] font-bold hover:underline">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link to="/privacy" className="text-pink-600 underline">
+              <Link to="/privacy" className="text-[#f470a0] font-bold hover:underline">
                 Privacy Policy
               </Link>
               .
-            </span>
+            </label>
           </div>
 
           {/* Register Button */}
           <button
             type="submit"
             disabled={!agree || loading}
-            className={`w-full py-2 rounded text-white ${
+            className={`w-full py-4 rounded-2xl text-white font-bold text-lg shadow-lg transform active:scale-95 transition-all duration-200 ${
               !agree || loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-pink-600 hover:bg-pink-700"
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 hover:shadow-pink-200 hover:-translate-y-1"
             }`}
           >
-            {loading ? "Creating account..." : "Register"}
+            {loading ? "Creating Account..." : "Join Now ✨"}
           </button>
         </form>
 
-        <p className="mt-4 text-sm text-center text-gray-600">
+        <p className="mt-8 text-sm text-center text-gray-600 font-medium">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-pink-600 font-medium hover:underline"
+            className="text-[#f470a0] font-black hover:underline underline-offset-4"
           >
-            Login
+            Login Here
           </Link>
         </p>
       </div>

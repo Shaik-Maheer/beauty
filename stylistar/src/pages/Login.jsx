@@ -197,28 +197,41 @@ const Login = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-pink-50">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-pink-700 text-center">
-          Sign In
-        </h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] relative overflow-hidden">
+      {/* Decorative Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pink-200 opacity-40 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-300 opacity-30 rounded-full blur-[120px] animate-pulse delay-700"></div>
+
+      <div 
+        className="bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-white/50 relative z-10"
+        data-aos="zoom-in"
+      >
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#f470a0] to-rose-400 rounded-2xl shadow-lg mb-4 transform hover:rotate-12 transition-transform duration-300">
+            <span className="text-3xl">✨</span>
+          </div>
+          <h2 className="text-3xl font-black text-gray-900 tracking-tight">
+            Welcome Back
+          </h2>
+          <p className="text-gray-500 mt-2 font-medium">Please sign in to your Stylistar account</p>
+        </div>
 
         {/* Error Banner */}
         {error && (
           <div
             role="alert"
             aria-live="assertive"
-            className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-red-700 text-sm text-center"
+            className="mb-6 rounded-2xl border border-red-100 bg-red-50/50 p-4 text-red-600 text-sm text-center font-semibold"
           >
             {error}
           </div>
         )}
 
-        <form onSubmit={handleLogin} noValidate>
+        <form onSubmit={handleLogin} noValidate className="space-y-6">
           {/* Email Field */}
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-sm font-bold text-gray-700 ml-1">
+              Email Address
             </label>
             <input
               id="email"
@@ -229,64 +242,73 @@ const Login = () => {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1 p-2 border rounded focus:outline-pink-500"
-              placeholder="you@example.com"
+              className="w-full px-5 py-4 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+              placeholder="name@example.com"
             />
           </div>
 
-          {/* Password Field with Show/Hide Toggle */}
-          <div className="mb-2 relative">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 p-2 border rounded pr-10 focus:outline-pink-500"
-              placeholder="••••••••"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((s) => !s)}
-              className="absolute right-3 top-9 text-gray-600 hover:text-pink-600"
-              tabIndex={-1}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
-
-          <div className="text-right mb-4">
-            <Link
-              to="/forgot-password"
-              className="text-sm text-pink-600 hover:underline"
-            >
-              Forgot Password?
-            </Link>
+          {/* Password Field */}
+          <div className="space-y-2 relative">
+            <div className="flex justify-between items-center ml-1">
+              <label htmlFor="password" className="text-sm font-bold text-gray-700">
+                Password
+              </label>
+              <Link
+                to="/forgot-password"
+                className="text-xs font-bold text-[#f470a0] hover:text-rose-600 transition"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-5 py-4 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((s) => !s)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#f470a0] transition"
+                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className={`w-full text-white py-2 rounded ${
+            className={`w-full py-4 rounded-2xl text-white font-bold text-lg shadow-lg transform active:scale-95 transition-all duration-200 ${
               loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-pink-600 hover:bg-pink-700"
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 hover:shadow-pink-200 hover:-translate-y-1"
             }`}
           >
-            {loading ? "Signing in..." : "Login"}
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+            ) : "Sign In ✨"}
           </button>
         </form>
 
-        <p className="mt-4 text-sm text-center text-gray-600">
+        <p className="mt-8 text-sm text-center text-gray-600 font-medium">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-pink-600 font-medium hover:underline">
-            Register
+          <Link to="/register" className="text-[#f470a0] font-black hover:underline underline-offset-4 ring-offset-2">
+            Create Account
           </Link>
         </p>
       </div>

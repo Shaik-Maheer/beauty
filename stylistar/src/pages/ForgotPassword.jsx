@@ -87,58 +87,75 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-pink-50">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow w-[350px]"
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] relative overflow-hidden">
+      {/* Decorative Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-pink-200 opacity-40 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-300 opacity-30 rounded-full blur-[120px] animate-pulse delay-700"></div>
+
+      <div 
+        className="bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-white/50 relative z-10"
+        data-aos="zoom-in"
       >
-        <h2 className="text-2xl font-bold text-pink-700 text-center mb-6">
-          Forgot Password
-        </h2>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#f470a0] to-rose-400 rounded-2xl shadow-lg mb-4">
+            <span className="text-3xl">🔑</span>
+          </div>
+          <h2 className="text-3xl font-black text-gray-900 tracking-tight">
+            Forgot Password
+          </h2>
+          <p className="text-gray-500 mt-2 font-medium leading-relaxed">No worries! Enter your email and we'll send you a reset link.</p>
+        </div>
 
         {/* Success + Error alerts */}
         {msg && (
-          <div className="mb-4 text-sm text-green-700 bg-green-50 border border-green-200 rounded p-2 text-center">
+          <div className="mb-6 rounded-2xl border border-green-100 bg-green-50/50 p-4 text-green-700 text-sm text-center font-semibold">
             {msg}
           </div>
         )}
         {error && (
-          <div className="mb-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded p-2 text-center">
+          <div className="mb-6 rounded-2xl border border-red-100 bg-red-50/50 p-4 text-red-600 text-sm text-center font-semibold">
             {error}
           </div>
         )}
 
-        <input
-          type="email"
-          placeholder="Your email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 mb-3 border rounded focus:outline-pink-500"
-          required
-        />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-1.5">
+            <label className="block text-sm font-bold text-gray-700 ml-1">
+              Registered Email
+            </label>
+            <input
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-5 py-4 bg-white/50 border border-pink-100 rounded-2xl focus:ring-2 focus:ring-[#f470a0] focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full py-2 rounded text-white ${
-            loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-pink-600 hover:bg-pink-700"
-          }`}
-        >
-          {loading ? "Sending..." : "Reset my Password"}
-        </button>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-4 rounded-2xl text-white font-bold text-lg shadow-lg transform active:scale-95 transition-all duration-200 ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 hover:shadow-pink-200 hover:-translate-y-1"
+            }`}
+          >
+            {loading ? "Sending Link..." : "Send Reset Link 📩"}
+          </button>
+        </form>
 
-        <div className="mt-6 text-center border-t border-gray-100 pt-6">
+        <div className="mt-8 text-center border-t border-pink-100/30 pt-8">
           <Link
             to="/login"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 underline hover:text-pink-600 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-[#f470a0] transition-colors underline underline-offset-4"
           >
-            <ArrowLeft size={14} />
-            Back to Login
+            <ArrowLeft size={16} />
+            Back to Sign In
           </Link>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

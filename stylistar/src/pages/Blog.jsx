@@ -95,30 +95,35 @@ export default function Blog() {
       </section>
 
       {/* Tips Section */}
-      <section className="bg-[#ffe4e6] px-6 py-16 text-gray-800">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div data-aos="fade-right">
-            <h2 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
+      <section className="bg-[#ffe4e6] px-6 py-16 text-gray-800 text-center">
+        <div className="max-w-3xl mx-auto">
+          <div data-aos="fade-up">
+            <h2 className="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
               Exclusive Pro Makeup Tips
             </h2>
-            <p className="mb-6 text-lg text-gray-700">
+            <p className="mb-8 text-lg text-gray-700 leading-relaxed">
               Glow like never before with our curated professional makeup
               secrets. Easy, beginner-friendly, and stunning results!
             </p>
-            <ul className="list-disc list-inside space-y-2 text-base text-gray-600">
-              <li>Prep your skin with a hydrating primer.</li>
-              <li>Use damp beauty blenders for a natural finish.</li>
-              <li>Apply concealer in a triangle shape under your eyes.</li>
-              <li>Use lip liner to define and shape your lips before lipstick.</li>
-              <li>Set your look with a setting spray for all-day wear.</li>
-            </ul>
-          </div>
-          <div className="flex justify-center" data-aos="fade-left">
-            <img
-              src="https://i.pinimg.com/736x/e7/68/e6/e768e6dea8f356f135cfb021622e1983.jpg"
-              alt="Makeup Tutorial"
-              className="rounded-2xl shadow-lg w-full max-w-md hover:scale-105 hover:shadow-2xl transition duration-500"
-            />
+            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-3xl border border-pink-100 shadow-sm inline-block text-left">
+              <ul className="space-y-4 text-base text-gray-700">
+                <li className="flex items-center gap-3">
+                  <span className="text-pink-500 font-bold">✓</span> Prep your skin with a hydrating primer.
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-pink-500 font-bold">✓</span> Use damp beauty blenders for a natural finish.
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-pink-500 font-bold">✓</span> Apply concealer in a triangle shape under your eyes.
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-pink-500 font-bold">✓</span> Use lip liner to define and shape your lips before lipstick.
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-pink-500 font-bold">✓</span> Set your look with a setting spray for all-day wear.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
