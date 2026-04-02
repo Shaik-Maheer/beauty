@@ -38,25 +38,40 @@ export default function Blog() {
   return (
     <>
       {/* 🔥 Modern Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] py-24 px-6 overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
-          {/* Content */}
-          <span className="inline-block bg-[#f470a0] text-white px-4 py-1.5 rounded-full text-sm font-bold mb-6 shadow-md tracking-wider">
-            PREMIUM CONTENT ✨
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight mb-8">
-            The Ultimate <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f470a0] to-rose-400">Beauty Blog</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Discover the latest trends in skincare, professional makeup tutorials, and lifestyle secrets curated just for you. Your daily dose of glam starts here 💖
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="px-10 py-4 bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 text-white font-bold rounded-full shadow-lg hover:shadow-pink-300 hover:scale-105 transition-all duration-300">
-              Explore Articles →
+      <section className="relative bg-gradient-to-r from-[#fff0f5] via-[#ffe4e6] to-[#faf2f2] py-20 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div data-aos="fade-right" className="text-left">
+            <span className="inline-block bg-[#f470a0] text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 shadow-md">
+              Free ✨
+            </span>
+            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+              Beauty Blog <br /> Website
+            </h1>
+            <p className="text-lg text-gray-600 mb-8 max-w-md">
+              Our template offers a customizable, modern design for effortless
+              connection. Perfect for beauty tips, skincare, and lifestyle
+              inspirations 💖
+            </p>
+            <button className="px-8 py-4 bg-gradient-to-r from-[#f470a0] via-pink-500 to-rose-400 text-white font-bold rounded-full shadow-lg hover:scale-105 transition-transform">
+              Get Started →
             </button>
-            <button className="px-10 py-4 bg-white text-[#f470a0] font-bold rounded-full shadow-md border border-pink-100 hover:bg-pink-50 transition-all duration-300">
-              Join Newsletter
-            </button>
+          </div>
+
+          {/* Right Side Mockup */}
+          <div data-aos="fade-left" className="relative flex justify-center mt-12 md:mt-0 px-4 sm:px-0">
+            <div className="relative w-[75%] sm:w-[80%] md:w-full max-w-[280px] sm:max-w-xs md:max-w-md">
+              <img
+                src="https://i.pinimg.com/736x/3d/32/e8/3d32e86c83c41c6cabfe5ce5981f1c9a.jpg"
+                alt="Beauty Blog Screenshot 1"
+                className="w-full rounded-2xl shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 relative z-10"
+              />
+              <img
+                src="https://i.pinimg.com/736x/a6/c0/4f/a6c04f4dc2d4c1038874c317144c14cf.jpg"
+                alt="Beauty Blog Screenshot 2"
+                className="absolute top-6 left-8 md:top-12 md:left-14 w-[85%] md:w-[90%] rounded-2xl shadow-xl transform rotate-[8deg] hover:rotate-2 transition-transform duration-500 z-20"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -95,35 +110,30 @@ export default function Blog() {
       </section>
 
       {/* Tips Section */}
-      <section className="bg-[#ffe4e6] px-6 py-16 text-gray-800 text-center">
-        <div className="max-w-3xl mx-auto">
-          <div data-aos="fade-up">
-            <h2 className="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
+      <section className="bg-[#ffe4e6] px-6 py-16 text-gray-800">
+        <div className="grid md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+          <div data-aos="fade-right">
+            <h2 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400">
               Exclusive Pro Makeup Tips
             </h2>
-            <p className="mb-8 text-lg text-gray-700 leading-relaxed">
+            <p className="mb-6 text-lg text-gray-700">
               Glow like never before with our curated professional makeup
               secrets. Easy, beginner-friendly, and stunning results!
             </p>
-            <div className="bg-white/50 backdrop-blur-sm p-8 rounded-3xl border border-pink-100 shadow-sm inline-block text-left">
-              <ul className="space-y-4 text-base text-gray-700">
-                <li className="flex items-center gap-3">
-                  <span className="text-pink-500 font-bold">✓</span> Prep your skin with a hydrating primer.
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-pink-500 font-bold">✓</span> Use damp beauty blenders for a natural finish.
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-pink-500 font-bold">✓</span> Apply concealer in a triangle shape under your eyes.
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-pink-500 font-bold">✓</span> Use lip liner to define and shape your lips before lipstick.
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-pink-500 font-bold">✓</span> Set your look with a setting spray for all-day wear.
-                </li>
-              </ul>
-            </div>
+            <ul className="list-disc list-inside space-y-2 text-base text-gray-600">
+              <li>Prep your skin with a hydrating primer.</li>
+              <li>Use damp beauty blenders for a natural finish.</li>
+              <li>Apply concealer in a triangle shape under your eyes.</li>
+              <li>Use lip liner to define and shape your lips before lipstick.</li>
+              <li>Set your look with a setting spray for all-day wear.</li>
+            </ul>
+          </div>
+          <div className="flex justify-center" data-aos="fade-left">
+            <img
+              src="https://i.pinimg.com/736x/e7/68/e6/e768e6dea8f356f135cfb021622e1983.jpg"
+              alt="Makeup Tutorial"
+              className="rounded-2xl shadow-lg w-full max-w-md hover:scale-105 hover:shadow-2xl transition duration-500"
+            />
           </div>
         </div>
 

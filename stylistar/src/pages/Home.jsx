@@ -371,25 +371,32 @@ const Home = () => {
 
 {/* location setup */}
 
-<section className="bg-[#fff1f2] py-20 px-6">
-  <div className="max-w-3xl mx-auto text-center" data-aos="fade-up">
-    <h4 className="text-3xl font-black text-rose-600 mb-6 uppercase tracking-wider">Visit Our Studio</h4>
-    <p className="text-2xl font-bold text-gray-900 mb-2">Stylistar Flagship Store & Spa</p>
-    <p className="text-lg text-gray-600 mb-6 flex items-center justify-center gap-2">
-      <span className="text-2xl">📍</span> Mumbai, India 🇮🇳
-    </p>
-    <p className="text-gray-700 text-lg mb-10 leading-relaxed">
-      Come experience luxury beauty and professional spa treatments in our Mumbai studio. 
-      While walk-ins are welcome, we highly recommend booking in advance for bridal sessions and premium spa treatments to ensure the best experience. 💕
-    </p>
-    <div className="flex justify-center">
-      <Link 
-        to="/services" 
-        className="bg-[#240016] text-white px-10 py-4 rounded-full font-bold hover:bg-rose-500 hover:scale-105 transition-all duration-300 shadow-xl"
-      >
+<section className="bg-[#fff1f2] py-16 px-6">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    
+    {/* Left Content */}
+    <div data-aos="fade-right">
+      <h4 className="text-2xl font-bold text-rose-600 mb-4">Visit Us In Person</h4>
+      <p className="text-lg mb-2">Stylistar Flagship Store & Spa</p>
+      <p className="mb-4">📍 Mumbai, India 🇮🇳</p>
+      <p className="text-gray-700 mb-4">
+        Come experience luxury beauty and spa treatments in our Mumbai studio. 
+        Walk-ins welcome, but bookings preferred for bridal & spa sessions. 💕
+      </p>
+      <Link to="/services" className="inline-block bg-[#240016] text-white px-6 py-3 rounded-lg hover:bg-rose-500 hover:text-white transition">
         Book an Appointment
       </Link>
     </div>
+
+    {/* Right Map */}
+    <div data-aos="fade-left">
+      <img
+        src="/images/map.png"
+        alt="Map of Mumbai"
+        className="rounded-xl shadow-xl w-full"
+      />
+    </div>
+
   </div>
 </section>
 
