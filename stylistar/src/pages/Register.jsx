@@ -222,9 +222,6 @@ const Register = () => {
         data-aos="zoom-in"
       >
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#f470a0] to-rose-400 rounded-2xl shadow-lg mb-4 transform hover:-rotate-12 transition-transform duration-300">
-            <span className="text-3xl">💖</span>
-          </div>
           <h2 className="text-3xl font-black text-gray-900 tracking-tight">
             Create Account
           </h2>
