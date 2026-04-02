@@ -59,17 +59,17 @@ export default function Blog() {
           </div>
 
           {/* Right Side Mockup */}
-          <div data-aos="fade-left" className="relative flex justify-center">
-            <div className="relative w-full max-w-md">
+          <div data-aos="fade-left" className="relative flex justify-center mt-12 md:mt-0 px-4 sm:px-0">
+            <div className="relative w-[75%] sm:w-[80%] md:w-full max-w-[280px] sm:max-w-xs md:max-w-md">
               <img
                 src="https://i.pinimg.com/736x/3d/32/e8/3d32e86c83c41c6cabfe5ce5981f1c9a.jpg"
                 alt="Beauty Blog Screenshot 1"
-                className="rounded-2xl shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500"
+                className="w-full rounded-2xl shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 relative z-10"
               />
               <img
                 src="https://i.pinimg.com/736x/a6/c0/4f/a6c04f4dc2d4c1038874c317144c14cf.jpg"
                 alt="Beauty Blog Screenshot 2"
-                className="absolute top-12 left-12 w-full rounded-2xl shadow-xl transform rotate-[8deg] hover:rotate-2 transition-transform duration-500"
+                className="absolute top-6 left-8 md:top-12 md:left-14 w-[85%] md:w-[90%] rounded-2xl shadow-xl transform rotate-[8deg] hover:rotate-2 transition-transform duration-500 z-20"
               />
             </div>
           </div>
@@ -121,11 +121,11 @@ export default function Blog() {
               secrets. Easy, beginner-friendly, and stunning results!
             </p>
             <ul className="list-disc list-inside space-y-2 text-base text-gray-600">
-              <li>💄 Prep your skin with a hydrating primer.</li>
-              <li>🌟 Use damp beauty blenders for a natural finish.</li>
-              <li>👁️ Apply concealer in a triangle shape under your eyes.</li>
-              <li>💋 Use lip liner to define and shape your lips before lipstick.</li>
-              <li>✨ Set your look with a setting spray for all-day wear.</li>
+              <li>Prep your skin with a hydrating primer.</li>
+              <li>Use damp beauty blenders for a natural finish.</li>
+              <li>Apply concealer in a triangle shape under your eyes.</li>
+              <li>Use lip liner to define and shape your lips before lipstick.</li>
+              <li>Set your look with a setting spray for all-day wear.</li>
             </ul>
           </div>
           <div className="flex justify-center" data-aos="fade-left">
