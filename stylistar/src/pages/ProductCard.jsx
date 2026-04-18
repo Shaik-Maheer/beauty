@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { FaHeart, FaRegHeart, FaStar, FaRegStar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
 import { isLoggedIn } from "../utils/auth";
+import { savePendingWishlist } from "../utils/pendingWishlist";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const productId = product?.id || product?.product_id;
   const isOnSale = Number.parseFloat(product?.price) < 5;
   const priceINR = Math.round((Number.parseFloat(product?.price) || 0) * 80 || 499);
@@ -15,9 +18,36 @@ const ProductCard = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  const promptAuthForWishlist = () => {
+    savePendingWishlist({
+      productId,
+      name: product?.name,
+      image: product?.image_link || product?.image,
+      price: product?.price,
+    });
+
+    const next = `${location.pathname}${location.search}${location.hash}`;
+    const query = `next=${encodeURIComponent(next)}&source=wishlist`;
+
+    const goToLogin = window.confirm(
+      "Please sign in to add this product to wishlist.\nPress OK for Login or Cancel for Register."
+    );
+
+    if (goToLogin) {
+      navigate(`/login?${query}`);
+    } else {
+      navigate(`/register?${query}`);
+    }
+  };
+
   const handleWishlistToggle = async () => {
+    if (!productId) {
+      toast.error("This item cannot be added to wishlist.");
+      return;
+    }
+
     if (!isLoggedIn()) {
-      toast.warning("Please log in to use wishlist. 💖");
+      promptAuthForWishlist();
       return;
     }
 

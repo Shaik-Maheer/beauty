@@ -54,8 +54,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 
-// Utils
-import { isLoggedIn } from "./utils/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -78,13 +76,15 @@ const LayoutWrapper = () => {
       {!hideChrome && <Navbar />}
       <div className="min-h-screen bg-gray-50 pb-safe">
         <Routes>
-          {/* Root route redirects to home if logged in, else login */}
-          <Route
-            path="/"
-            element={isLoggedIn() ? <Navigate to="/home" /> : <Login />}
-          />
+          <Route path="/" element={<Navigate to="/home" replace />} />
 
           {/* Public Routes */}
+          <Route path="/home" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -93,12 +93,6 @@ const LayoutWrapper = () => {
           <Route path="/privacy" element={<TermsAndPrivacy />} />
 
           {/* Protected Routes */}
-          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="/shop" element={<PrivateRoute><Shop /></PrivateRoute>} />
-          <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
-          <Route path="/wishlist" element={<PrivateRoute><Wishlist /></PrivateRoute>} />
-          <Route path="/product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
-          <Route path="/blog" element={<PrivateRoute><Blog /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
           <Route path="/orders" element={<PrivateRoute><MyOrders /></PrivateRoute>} />

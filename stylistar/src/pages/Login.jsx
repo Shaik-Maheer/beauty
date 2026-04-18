@@ -126,15 +126,18 @@
 
 
 
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import api from "../utils/axiosInstance";
 import { isAuthenticated } from "../utils/isAuthenticated";
 import { saveUser } from "../utils/auth";
+import { popPendingWishlist } from "../utils/pendingWishlist";
+import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -142,12 +145,23 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const rawNextPath = searchParams.get("next") || "/home";
+  const nextPath = rawNextPath.startsWith("/") ? rawNextPath : "/home";
+  const source = searchParams.get("source") || "";
+  const registerHref = useMemo(() => {
+    const params = new URLSearchParams();
+    if (nextPath) params.set("next", nextPath);
+    if (source) params.set("source", source);
+    const query = params.toString();
+    return query ? `/register?${query}` : "/register";
+  }, [nextPath, source]);
+
   // Redirect if already logged in
   useEffect(() => {
     if (isAuthenticated()) {
-      navigate("/home");
+      navigate(nextPath, { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, nextPath]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -172,7 +186,24 @@ const Login = () => {
         saveUser(res.data.user, res.data.token);
         // optional: clear password field to avoid lingering sensitive data
         setPassword("");
-        navigate("/home");
+
+        if (source === "wishlist") {
+          const pendingWishlistItem = popPendingWishlist();
+          if (pendingWishlistItem?.productId) {
+            try {
+              await api.post("/wishlist", pendingWishlistItem);
+              toast.success("Added to wishlist 💖");
+            } catch (wishlistErr) {
+              console.error(
+                "Wishlist continuation error:",
+                wishlistErr?.response?.data || wishlistErr?.message
+              );
+              toast.error("Logged in, but could not add wishlist item.");
+            }
+          }
+        }
+
+        navigate(nextPath, { replace: true });
       } else {
         throw new Error("Invalid response from server.");
       }
@@ -304,7 +335,7 @@ const Login = () => {
 
         <p className="mt-8 text-sm text-center text-gray-600 font-medium">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-[#f470a0] font-black hover:underline underline-offset-4 ring-offset-2">
+          <Link to={registerHref} className="text-[#f470a0] font-black hover:underline underline-offset-4 ring-offset-2">
             Create Account
           </Link>
         </p>

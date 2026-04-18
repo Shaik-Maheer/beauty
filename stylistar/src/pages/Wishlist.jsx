@@ -84,7 +84,10 @@ const Wishlist = () => {
         <Heart size={60} className="mx-auto text-pink-200 mb-6" />
         <h2 className="text-2xl font-black text-gray-900 mb-4">Your Favorites Await</h2>
         <p className="text-gray-500 mb-8 max-w-sm mx-auto">Please login to see the products you've saved to your beauty wishlist.</p>
-        <button onClick={() => window.location.href='/login'} className="btn-primary">Sign In to Favorites</button>
+        <div className="flex items-center justify-center gap-3">
+          <button onClick={() => window.location.href="/login"} className="btn-primary">Login</button>
+          <button onClick={() => window.location.href="/register"} className="btn-secondary">Register</button>
+        </div>
       </div>
     );
   }

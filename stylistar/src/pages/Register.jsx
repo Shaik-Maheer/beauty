@@ -151,13 +151,14 @@
 
 // export default Register;
 
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../utils/axiosInstance";
 import { Eye, EyeOff } from "lucide-react";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -168,6 +169,17 @@ const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const rawNextPath = searchParams.get("next") || "/home";
+  const nextPath = rawNextPath.startsWith("/") ? rawNextPath : "/home";
+  const source = searchParams.get("source") || "";
+  const loginHref = useMemo(() => {
+    const params = new URLSearchParams();
+    if (nextPath) params.set("next", nextPath);
+    if (source) params.set("source", source);
+    const query = params.toString();
+    return query ? `/login?${query}` : "/login";
+  }, [nextPath, source]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -194,7 +206,7 @@ const Register = () => {
         e.target.reset?.();
 
         // redirect after a short pause so user can read the alert
-        setTimeout(() => navigate("/login"), 1200);
+        setTimeout(() => navigate(loginHref), 1200);
       } else {
         throw new Error("Registration failed. Try again.");
       }
@@ -345,7 +357,7 @@ const Register = () => {
         <p className="mt-8 text-sm text-center text-gray-600 font-medium">
           Already have an account?{" "}
           <Link
-            to="/login"
+            to={loginHref}
             className="text-[#f470a0] font-black hover:underline underline-offset-4"
           >
             Login Here
