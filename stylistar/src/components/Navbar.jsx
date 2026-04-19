@@ -15,6 +15,22 @@ const Navbar = () => {
     setIsMobileMenuOpen(false); // close menu on mobile search
   };
 
+  const handleProtectedNav = (target, source, label) => {
+    if (isLoggedIn()) {
+      navigate(target);
+      return;
+    }
+
+    const params = new URLSearchParams({
+      next: target,
+      source,
+    });
+    const goToLogin = window.confirm(
+      `Please sign in to open your ${label}.\nPress OK for Login or Cancel for Register.`
+    );
+    navigate(`/${goToLogin ? "login" : "register"}?${params.toString()}`);
+  };
+
   const MobileLink = ({ to, children }) => (
     <Link 
       to={to} 
@@ -81,16 +97,24 @@ const Navbar = () => {
                   <User className="w-6 h-6 sm:w-6 sm:h-6 text-gray-700 group-hover:text-pink-600" strokeWidth={1.5} />
                </div>
             </Link>
-            <Link to="/wishlist" className="flex flex-col items-center group relative cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-300">
-               <div className="p-2 sm:p-2.5 rounded-full group-hover:bg-pink-50 transition duration-300">
-                 <Heart className="w-6 h-6 sm:w-6 sm:h-6 text-gray-700 group-hover:text-pink-600" strokeWidth={1.5} />
-               </div>
-            </Link>
-            <Link to="/cart" className="flex flex-col items-center group relative cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-300">
-               <div className="p-2 sm:p-2.5 rounded-full group-hover:bg-pink-50 transition duration-300">
-                 <ShoppingBag className="w-6 h-6 sm:w-6 sm:h-6 text-gray-700 group-hover:text-pink-600" strokeWidth={1.5} />
-               </div>
-            </Link>
+            <button
+              type="button"
+              onClick={() => handleProtectedNav("/wishlist", "wishlist", "wishlist")}
+              className="flex flex-col items-center group relative cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-300"
+            >
+              <div className="p-2 sm:p-2.5 rounded-full group-hover:bg-pink-50 transition duration-300">
+                <Heart className="w-6 h-6 sm:w-6 sm:h-6 text-gray-700 group-hover:text-pink-600" strokeWidth={1.5} />
+              </div>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleProtectedNav("/cart", "cart", "cart")}
+              className="flex flex-col items-center group relative cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-300"
+            >
+              <div className="p-2 sm:p-2.5 rounded-full group-hover:bg-pink-50 transition duration-300">
+                <ShoppingBag className="w-6 h-6 sm:w-6 sm:h-6 text-gray-700 group-hover:text-pink-600" strokeWidth={1.5} />
+              </div>
+            </button>
           </div>
 
         </div>

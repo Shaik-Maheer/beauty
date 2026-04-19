@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState, useMemo, useRef } from "react";
 import axios from "axios";
 import { FaStar, FaRegStar } from "react-icons/fa";
@@ -20,6 +20,7 @@ const stars = (n = 0) => Math.min(5, Math.max(0, Math.round(n)));
 export default function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState([]);
@@ -138,8 +139,15 @@ export default function ProductDetails() {
 
   const handleAddToCart = async () => {
     if (!isLoggedIn()) {
-      toast.info("Please login to add items to cart");
-      navigate("/login");
+      const next = `${location.pathname}${location.search}${location.hash}`;
+      const params = new URLSearchParams({
+        next,
+        source: "cart",
+      });
+      const goToLogin = window.confirm(
+        "Please sign in to add this product to cart.\nPress OK for Login or Cancel for Register."
+      );
+      navigate(`/${goToLogin ? "login" : "register"}?${params.toString()}`);
       return;
     }
 

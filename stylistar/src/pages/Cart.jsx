@@ -8,6 +8,10 @@ import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 const Cart = () => {
   const { cart, setCart } = useCart();
   const navigate = useNavigate();
+  const cartAuthQuery = new URLSearchParams({
+    next: "/cart",
+    source: "cart",
+  }).toString();
 
   const fetchCart = async () => {
     try {
@@ -65,7 +69,10 @@ const Cart = () => {
         <div className="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6 text-pink-600 font-bold text-3xl">!</div>
         <h2 className="text-2xl font-black text-gray-900 mb-4">Your Beauty Bag is Waiting</h2>
         <p className="text-gray-500 mb-8 max-w-sm mx-auto font-medium">Please login to see the items you've added to your cart and complete your purchase.</p>
-        <button onClick={() => navigate("/login")} className="btn-primary">Log In Now</button>
+        <div className="flex items-center justify-center gap-3">
+          <button onClick={() => navigate(`/login?${cartAuthQuery}`)} className="btn-primary">Login</button>
+          <button onClick={() => navigate(`/register?${cartAuthQuery}`)} className="btn-secondary">Register</button>
+        </div>
       </div>
     );
   }
@@ -199,5 +206,4 @@ const Cart = () => {
 };
 
 export default Cart;
-
 

@@ -18,6 +18,24 @@ const ProductCard = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  const promptAuth = (source, message) => {
+    const next = `${location.pathname}${location.search}${location.hash}`;
+    const params = new URLSearchParams({
+      next,
+      source,
+    });
+
+    const goToLogin = window.confirm(
+      `${message}\nPress OK for Login or Cancel for Register.`
+    );
+
+    if (goToLogin) {
+      navigate(`/login?${params.toString()}`);
+    } else {
+      navigate(`/register?${params.toString()}`);
+    }
+  };
+
   const promptAuthForWishlist = () => {
     savePendingWishlist({
       productId,
@@ -26,18 +44,7 @@ const ProductCard = ({ product }) => {
       price: product?.price,
     });
 
-    const next = `${location.pathname}${location.search}${location.hash}`;
-    const query = `next=${encodeURIComponent(next)}&source=wishlist`;
-
-    const goToLogin = window.confirm(
-      "Please sign in to add this product to wishlist.\nPress OK for Login or Cancel for Register."
-    );
-
-    if (goToLogin) {
-      navigate(`/login?${query}`);
-    } else {
-      navigate(`/register?${query}`);
-    }
+    promptAuth("wishlist", "Please sign in to add this product to wishlist.");
   };
 
   const handleWishlistToggle = async () => {
@@ -77,7 +84,7 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = async () => {
     if (!isLoggedIn()) {
-      toast.warning("Please log in to add to cart. 🛒");
+      promptAuth("cart", "Please sign in to add this product to cart.");
       return;
     }
     try {

@@ -4,11 +4,17 @@ import { isLoggedIn } from "../utils/auth";
 import { useCart } from "../context/CartContext"; 
 import { toast } from "react-toastify";
 import { Trash2, ShoppingCart, Heart, ShoppingBag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
   const { fetchCart } = useCart();
+  const navigate = useNavigate();
+  const wishlistAuthQuery = new URLSearchParams({
+    next: "/wishlist",
+    source: "wishlist",
+  }).toString();
 
   const fetchWishlist = async () => {
     try {
@@ -55,7 +61,10 @@ const Wishlist = () => {
 
   const handleAddToCart = async (product) => {
     if (!isLoggedIn()) {
-      toast.warning("Please log in to add to cart.");
+      const goToLogin = window.confirm(
+        "Please sign in to add this product to cart.\nPress OK for Login or Cancel for Register."
+      );
+      navigate(`/${goToLogin ? "login" : "register"}?${wishlistAuthQuery}`);
       return;
     }
 
@@ -85,8 +94,8 @@ const Wishlist = () => {
         <h2 className="text-2xl font-black text-gray-900 mb-4">Your Favorites Await</h2>
         <p className="text-gray-500 mb-8 max-w-sm mx-auto">Please login to see the products you've saved to your beauty wishlist.</p>
         <div className="flex items-center justify-center gap-3">
-          <button onClick={() => window.location.href="/login"} className="btn-primary">Login</button>
-          <button onClick={() => window.location.href="/register"} className="btn-secondary">Register</button>
+          <button onClick={() => navigate(`/login?${wishlistAuthQuery}`)} className="btn-primary">Login</button>
+          <button onClick={() => navigate(`/register?${wishlistAuthQuery}`)} className="btn-secondary">Register</button>
         </div>
       </div>
     );
